@@ -1,5 +1,7 @@
 package com.homework3;
 
+// copy from lessons
+
 public class Person {
 
     private String firstName;
