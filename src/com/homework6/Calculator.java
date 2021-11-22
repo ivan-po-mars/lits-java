@@ -1,4 +1,4 @@
-package com.company;
+package com.homework6;
 
 public class Calculator {
     public static int add(int x, int y) {
@@ -16,9 +16,9 @@ public class Calculator {
         return result;
     }
 
-    public static int div(int x, int y) throws CalculatorException {
+    public static int div(int x, int y) throws DivOnZeroException {
         if (y == 0) {
-            throw new CalculatorException("Incorrect Divide To Zero");
+            throw new DivOnZeroException("Incorrect Divide To Zero");
         }
         int result = x/y;
         return result;

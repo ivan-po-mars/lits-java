@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
-  public static void main(String[] args) throws CalculatorException {
+  public static void main(String[] args) throws DivOnZeroException {
     int quantity = 10;
     Random random = new Random(quantity);
     List<Integer> list = new ArrayList();
@@ -52,7 +52,7 @@ public class Main {
       System.out.println( calculator.multiply(2, 2));
       System.out.println( calculator.div(2, 2));
       System.out.println( calculator.div(2, 0));
-    } catch (CalculatorException e) {
+    } catch (DivOnZeroException e) {
       System.out.println(e);
     }
   }
