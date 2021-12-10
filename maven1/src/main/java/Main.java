@@ -3,25 +3,12 @@ import java.sql.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-// I have those exceptions:
-// java.lang.ClassNotFoundException: com.mysql.jdbc.Driver
-// Exception in thread "main" java.sql.SQLException: No suitable driver found for jdbc:mysql://127.0.0.1:3306/l17
-
-// Первый: проблема с форматом URL-адреса соединения (Connection conn = DriverManager).
-// getConnection("jdbc:mysql://localhost:3306/XX","root","XXXX")
-// Два: Ошибка строки драйвера (com.mysql.jdbc.Driver)
-// Три: соответствующий драйвер mysql_jdbc не добавлен в Classpath (драйвер должен соответствовать вашей версии базы данных)
-// Четвёртое: расположение пакета JAR драйвера неверно
-
 public class Main {
-
     private static Connection connection = null;
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "ubuntu09";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/l17";
-    // TODO: I'm not sure how is proper
-    // private static final String URL = "jdbc:mysql://localhost:3306/l17";
+    private static final String URL = "jdbc:mysql://localhost:3306/l17";
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         try {
@@ -55,7 +42,7 @@ public class Main {
         // Тих в кого в адресі є місто львів(Hint: use like from sql)
 
         for (User user: userList) {
-            PreparedStatement insertStatement = connection.prepareStatement("Insert into user(firstName, lastName, age, address) value(?, ?, ?, ?);");
+            PreparedStatement insertStatement = connection.prepareStatement("Insert into users(firstName, lastName, age, address) value(?, ?, ?, ?);");
             insertStatement.setString(1, user.getFirstName());
             insertStatement.setString(2, user.getLastName());
             insertStatement.setInt(3, user.getAge());
@@ -63,7 +50,7 @@ public class Main {
             insertStatement.executeUpdate();
         }
 
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE age > ?");
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE age > ?");
         statement.setInt(1, 18);
         ResultSet resultSet = statement.executeQuery();
 
@@ -71,7 +58,7 @@ public class Main {
             System.out.println(resultSet.getInt("id") + " " + resultSet.getInt("age"));
         }
 
-        statement = connection.prepareStatement("SELECT * FROM user WHERE address LIKE ?");
+        statement = connection.prepareStatement("SELECT * FROM users WHERE address LIKE ?");
         statement.setString(1, "Lviv");
         resultSet = statement.executeQuery();
 
