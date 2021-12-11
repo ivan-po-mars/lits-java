@@ -4,7 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.ArrayList;
 
-// Створити клас User(id,fname, lname, age) і за допомогою Hibernate+Spring :
+// Створити клас User(id, fname, lname, age) і за допомогою Hibernate+Spring :
 // 1) Записати 10 рекордів у базу
 // 2) Додати метод для виделля
 // 3) Метод для отримання по Id
